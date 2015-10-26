@@ -4,15 +4,24 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:js": "browserify -t vueify ${npm_package_config_src_js} > ${npm_package_config_dist_js}",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:js": "watchify -t vueify ${npm_package_config_src_js} -o ${npm_package_config_dist_js} -dv",
+    "postinstall": "npm run build:js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "browserslist": "^1.0.1",
-    "vue": "^0.12.16",
-    "vue-hot-reload-api": "^1.2.1",
+    "vue": "^0.12.16"
+  },
+  "config": {
+    "src_js": "main.js",
+    "dist_js": "dist/bundle.js"
+  },
+  "devDependencies": {
     "vueify": "^4.0.1",
-    "vueify-insert-css": "^1.0.0"
+    "browserify": "^11.2.0",
+    "watchify": "^3.5.0"
   }
 }
